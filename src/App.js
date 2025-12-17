@@ -38,12 +38,12 @@ function App() {
         if (response.ok) {
           console.log(data);
           setWeatherInfo({
-            ...weatherInfo,
+            // ...weatherInfo,
             location: data.name,
             country: data.sys.country,
             temp: data.main.temp,
             feelsLike: data.main.feels_like,
-            description: data.weather.description,
+            description: data.weather[0].description,
             humidity: data.main.humidity,
             windSpeed: data.wind.speed,
             windDeg: data.wind.deg,
@@ -63,7 +63,7 @@ function App() {
       setLoading(false);
     };
     fetchWeatherData();
-  }, [searchCity]);
+  }, [searchCity, api.base, api.key]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
